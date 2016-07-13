@@ -1,0 +1,43 @@
+{
+  "name": "venus",
+  "version": "0.1.0",
+  "engines": {
+    "node": "5.9.0"
+  },
+  "scripts": {
+    "eslint": "node_modules/.bin/eslint src/**/*.js*",
+    "nodemon": "node_modules/.bin/nodemon src/bin/www -w src -e js",
+    "server:prod": "NODE_ENV=production node src/bin/www",
+    "start": "npm run nodemon",
+    "test:server:cleanup": "node ./bin/test-server-cleanup.js",
+    "test:server:coverage": "npm run test:server:cleanup && npm run test:server:run:coverage",
+    "test:server:run:coverage": "node_modules/.bin/babel-node node_modules/.bin/babel-istanbul cover --dir 'coverage' --report lcov --report text -x '*spec*' node_modules/.bin/_mocha './src/**/*.spec.js'",
+    "test:server:run": "node_modules/.bin/_mocha './src/**/*.spec.js'",
+    "test:server": "npm run test:server:cleanup && npm run test:server:run",
+    "test": "npm run eslint",
+    "watch:script:server": "node_modules/.bin/onchange 'src/**/*.js' -- npm run test:server"
+  },
+  "dependencies": {
+    "body-parser": "1.14.2",
+    "debug": "2.2.0",
+    "express": "4.13.3",
+    "lodash": "4.11.1",
+    "morgan": "1.6.1",
+    "node-sass": "^3.8.0",
+    "q": "1.4.1"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "coveralls": "2.11.9",
+    "eslint": "2.12.0",
+    "eslint-config-airbnb": "9.0.1",
+    "eslint-plugin-import": "^1.10.2",
+    "eslint-plugin-jsx-a11y": "1.4.2",
+    "eslint-plugin-react": "5.1.1",
+    "mocha": "2.5.3",
+    "nodemon": "1.8.1",
+    "onchange": "2.4.0",
+    "sinon": "1.17.4",
+    "supertest": "1.2.0"
+  }
+}
